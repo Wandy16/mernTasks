@@ -9,11 +9,6 @@ const app = express();
 //habilitar cors
 app.use(cors());
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
 
 //conectar a la base de datos
 conectarDB();
@@ -23,7 +18,7 @@ conectarDB();
 app.use(express.json({extended: true }));
 
 //puerto de la app
-const port = process.env.port || 4000;
+const PORT = process.env.PORT || 4000;
 
 //importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
@@ -37,6 +32,6 @@ app.get('/', (req, res) => {
 })
 
 //arrancar la app
-app.listen(port,'0.0.0.0', () =>{
-    console.log(`El servidor esta funcionando en el puerto ${port}`);
+app.listen(PORT,'0.0.0.0', () =>{
+    console.log(`El servidor esta funcionando en el puerto ${PORT}`);
 });
